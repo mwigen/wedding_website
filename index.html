@@ -40,6 +40,20 @@
       margin: 2rem auto;
       padding: 0 1rem;
     }
+    .illustration-container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .illustration-container img {
+      width: 250px;
+      border-radius: 16px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: rgba(255, 255, 255, 0.6);
+      padding: 0.5rem;
+    }
     h2 {
       color: var(--accent);
     }
@@ -92,11 +106,16 @@
   <section>
     <h2>Velkommen</h2>
     <p>Vi gleder oss til å feire den store dagen med familie og venner i vakre Koster! Vielsen finner sted ved Valmutvägen 39a, og festen holdes på Ekenäs hotell. Mer informasjon finnes på denne siden etter hvert.</p>
+
+    <div class="illustration-container">
+      <img src="house_illustration.png" alt="Akvarell av huset" />
+      <img src="koster_watercolor_map.png" alt="Akvarellkart over Koster" />
+    </div>
   </section>
 
   <section>
     <h2>Gi oss beskjed</h2>
-    <form action="mailto:morten.wigen@gmail.com" method="post" enctype="text/plain">
+    <form action="https://formsubmit.co/morten.wigen@gmail.com" method="POST">
       <label for="name">Navn</label>
       <input type="text" id="name" name="Navn" required />
 
@@ -114,6 +133,10 @@
 
       <label for="diet">Matpreferanser/allergier</label>
       <textarea id="diet" name="Matpreferanser"></textarea>
+
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="box">
+      <input type="hidden" name="_next" value="https://www.anneogmorten.com/takk">
 
       <button type="submit">Send svar</button>
     </form>
