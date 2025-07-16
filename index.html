@@ -14,30 +14,21 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: var(--main-bg);
+      background: var(--main-bg) url('watercolor_background.png') no-repeat center center fixed;
+      background-size: cover;
       color: var(--text);
     }
     header {
       position: relative;
       height: 60vh;
-      background: url('https://source.unsplash.com/1600x900/?wedding,nature') no-repeat center center/cover;
+      background: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: white;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-    }
-    header::after {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 0;
+      color: var(--accent);
+      text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
     }
     header h1, header p {
-      position: relative;
-      z-index: 1;
       margin: 0;
       text-align: center;
     }
@@ -56,7 +47,7 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      background: white;
+      background: rgba(255, 255, 255, 0.9);
       padding: 1.5rem;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -105,7 +96,7 @@
 
   <section>
     <h2>Gi oss beskjed</h2>
-    <form action="mailto:din-epost@domene.no" method="post" enctype="text/plain">
+    <form action="mailto:morten.wigen@gmail.com" method="post" enctype="text/plain">
       <label for="name">Navn</label>
       <input type="text" id="name" name="Navn" required />
 
