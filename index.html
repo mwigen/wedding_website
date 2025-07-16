@@ -48,7 +48,9 @@
       margin-top: 2rem;
     }
     .illustration-container img {
-      width: 250px;
+      max-width: 100%;
+      height: auto;
+      flex: 1 1 250px;
       border-radius: 16px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       background: rgba(255, 255, 255, 0.6);
@@ -94,6 +96,20 @@
       color: #777;
     }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const password = "koster2026"; // Du kan endre passordet her
+      const entered = sessionStorage.getItem("entered") === "true";
+      if (!entered) {
+        let attempt = prompt("Skriv inn passord for å se siden:");
+        if (attempt !== password) {
+          document.body.innerHTML = "<h2 style='text-align:center;margin-top:20vh;'>Feil passord. Prøv igjen ved å laste siden på nytt.</h2>";
+        } else {
+          sessionStorage.setItem("entered", "true");
+        }
+      }
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -108,9 +124,9 @@
     <p>Vi gleder oss til å feire den store dagen med familie og venner i vakre Koster! Vielsen finner sted ved Valmutvägen 39a, og festen holdes på Ekenäs hotell. Mer informasjon finnes på denne siden etter hvert.</p>
 
     <div class="illustration-container">
-      <img src="vielse.png" alt="Akvarell av huset" />
-      <img src="hotell.png" alt="Akvarell av hotellet" />
-      <img src="kart.png" alt="Akvarellkart over Koster uten tekst" />
+      <img src="vielse.png" alt="Vielse" />
+      <img src="hotell.png" alt="Ekenä hotell" />
+      <img src="kart.png" alt="Kart over Koster" />
     </div>
   </section>
 
@@ -137,14 +153,14 @@
 
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="box">
-      <input type="hidden" name="_next" value="https://www.anneogmorten.com/takk">
+      <input type="hidden" name="_next" value="takk.html">
 
       <button type="submit">Send svar</button>
     </form>
   </section>
 
   <footer>
-    <p>Mer informasjon kommer på www.anneogmorten.com</p>
+    <p>Mer informasjon kommer...</p>
   </footer>
 </body>
 </html>
