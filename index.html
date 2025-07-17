@@ -11,12 +11,26 @@
       --accent-dark: #7f6657;
       --text: #333;
     }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: var(--main-bg) url('watercolor_background_2.png') no-repeat top center fixed;
-      background-size: 100% auto;
       color: var(--text);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--main-bg) url('watercolor_background_2.png') no-repeat center center/cover;
+      z-index: -1;
     }
     header {
       position: relative;
@@ -90,6 +104,39 @@
     button:hover {
       background: var(--accent-dark);
     }
+    .timeline {
+      position: relative;
+      list-style: none;
+      padding-left: 40px;
+      margin: 2rem 0;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 20px;
+      width: 2px;
+      background: var(--accent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -29px;
+      top: 0.25rem;
+      width: 16px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    .timeline-time {
+      font-weight: bold;
+      color: var(--accent-dark);
+    }
     footer {
       text-align: center;
       padding: 2rem;
@@ -124,11 +171,36 @@
     <p>Vi gleder oss til å feire den store dagen med familie og venner i vakre Koster! Vielsen finner sted ved Valmutvägen 39a, og festen holdes på Ekenäs hotell. Mer informasjon finnes på denne siden etter hvert.</p>
 
     <div class="illustration-container">
-      <img src="vielse.png" alt="Vielse" />
-      <img src="hotell.png" alt="Hotell" />
-      <img src="kart.png" alt="Kart" />
+      <a href="#program"><img src="kart.png" alt="Kart over lokasjonene" /></a>
+      <a href="#program"><img src="vielse.png" alt="Vielse" /></a>
+      <a href="#program"><img src="hotell.png" alt="Hotell" /></a>
     </div>
   </section>
+
+  <section id="program">
+    <h2>Program</h2>
+    <ul class="timeline">
+      <li class="timeline-item"><span class="timeline-time">12:00</span> Vielse ved Valmutvägen 39a</li>
+      <li class="timeline-item"><span class="timeline-time">13:00</span> Transport til Ekenäs</li>
+      <li class="timeline-item"><span class="timeline-time">15:00</span> Middag og fest på Ekenäs hotell</li>
+      <li class="timeline-item"><span class="timeline-time">22:00</span> Kveldsmat</li>
+    </ul>
+  </section>
+
+<section>
+  <h2>Praktisk info</h2>
+  <p>Her vil vi legge ut detaljer om transport, overnatting og andre praktiske ting.</p>
+</section>
+
+<section>
+  <h2>Aktiviteter</h2>
+  <p>Vi planlegger flere aktiviteter i løpet av helgen. Mer info kommer.</p>
+</section>
+
+<section>
+  <h2>Gaver</h2>
+  <p>Vi setter pris på gaver, men viktigst er at du kommer og feirer med oss.</p>
+</section>
 
   <section>
     <h2>Gi oss beskjed</h2>
@@ -158,26 +230,6 @@
       <button type="submit">Send svar</button>
     </form>
   </section>
-
-<section>
-  <h2>Program og lokasjoner</h2>
-  <p>Informasjon om tidspunkt, vielsen og festen kommer her.</p>
-</section>
-
-<section>
-  <h2>Praktisk info</h2>
-  <p>Her vil vi legge ut detaljer om transport, overnatting og andre praktiske ting.</p>
-</section>
-
-<section>
-  <h2>Aktiviteter</h2>
-  <p>Vi planlegger flere aktiviteter i løpet av helgen. Mer info kommer.</p>
-</section>
-
-<section>
-  <h2>Gaver</h2>
-  <p>Vi setter pris på gaver, men viktigst er at du kommer og feirer med oss.</p>
-</section>
 
   <footer>
     <p>Mer informasjon kommer...</p>
