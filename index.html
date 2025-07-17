@@ -32,31 +32,53 @@
       background: var(--main-bg) url('watercolor_background_2.png') no-repeat center center/cover;
       z-index: -1;
     }
-    header {
+
+    .hero-header {
       position: relative;
       height: 60vh;
-      background: transparent;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      filter: brightness(0.85);
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       color: var(--accent);
+      text-align: center;
       text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
     }
-    header h1, header p {
-      margin: 0;
-      text-align: center;
-    }
-    header h1 {
+
+    .hero-text h1 {
       font-size: 3rem;
+      margin: 0;
     }
+
+    .hero-text p {
+      font-size: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
     section {
       max-width: 800px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
+
     h2 {
       color: var(--accent);
     }
+
     form {
       display: flex;
       flex-direction: column;
@@ -66,15 +88,18 @@
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
+
     label {
       font-weight: bold;
     }
+
     input, textarea, select {
       padding: 0.75rem;
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 6px;
     }
+
     button {
       padding: 0.75rem;
       background: var(--accent);
@@ -85,15 +110,18 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
+
     button:hover {
       background: var(--accent-dark);
     }
+
     .timeline {
       position: relative;
       list-style: none;
       padding-left: 40px;
       margin: 2rem 0;
     }
+
     .timeline::before {
       content: "";
       position: absolute;
@@ -103,6 +131,7 @@
       width: 2px;
       background: var(--accent);
     }
+
     .timeline-item {
       position: relative;
       margin-bottom: 2rem;
@@ -110,6 +139,7 @@
       align-items: center;
       gap: 1rem;
     }
+
     .timeline-item::before {
       content: "";
       position: absolute;
@@ -121,6 +151,7 @@
       background: var(--accent);
       border-radius: 50%;
     }
+
     .timeline-item img {
       width: 80px;
       height: 80px;
@@ -129,46 +160,35 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       flex-shrink: 0;
     }
+
     .timeline-item div {
       flex: 1;
     }
+
     .timeline-time {
       font-weight: bold;
       color: var(--accent-dark);
     }
+
     footer {
       text-align: center;
       padding: 2rem;
       color: #777;
     }
   </style>
-  <!-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const password = "koster2026"; // Du kan endre passordet her
-      const entered = sessionStorage.getItem("entered") === "true";
-      if (!entered) {
-        let attempt = prompt("Skriv inn passord for å se siden:");
-        if (attempt !== password) {
-          document.body.innerHTML = "<h2 style='text-align:center;margin-top:20vh;'>Feil passord. Prøv igjen ved å laste siden på nytt.</h2>";
-        } else {
-          sessionStorage.setItem("entered", "true");
-        }
-      }
-    });
-  </script> -->
 </head>
 <body>
-  <header>
-    <div>
+
+  <header class="hero-header">
+    <img src="anne_morten_banner.jpg" alt="Anne og Morten" class="hero-img">
+    <div class="hero-text">
       <h1>Anne & Morten</h1>
       <p>Gifter seg 27. juni 2026</p>
     </div>
   </header>
 
   <section>
-
     <p>Vi gleder oss til å feire den store dagen med familie og venner i vakre Koster! Vielsen finner sted ved Valmutvägen 39a, og festen holdes på Ekenäs hotell. Mer informasjon finnes på denne siden etter hvert.</p>
-
   </section>
 
   <section id="program">
@@ -193,20 +213,20 @@
     </ul>
   </section>
 
-<section>
-  <h2>Praktisk info</h2>
-  <p>Her vil vi legge ut detaljer om transport, overnatting og andre praktiske ting.</p>
-</section>
+  <section>
+    <h2>Praktisk info</h2>
+    <p>Her vil vi legge ut detaljer om transport, overnatting og andre praktiske ting.</p>
+  </section>
 
-<section>
-  <h2>Aktiviteter</h2>
-  <p>Vi planlegger flere aktiviteter i løpet av helgen. Mer info kommer.</p>
-</section>
+  <section>
+    <h2>Aktiviteter</h2>
+    <p>Vi planlegger flere aktiviteter i løpet av helgen. Mer info kommer.</p>
+  </section>
 
-<section>
-  <h2>Gaver</h2>
-  <p>Vi setter pris på gaver, men viktigst er at du kommer og feirer med oss.</p>
-</section>
+  <section>
+    <h2>Gaver</h2>
+    <p>Vi setter pris på gaver, men viktigst er at du kommer og feirer med oss.</p>
+  </section>
 
   <section>
     <h2>Gi oss beskjed</h2>
