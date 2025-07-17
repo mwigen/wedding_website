@@ -54,22 +54,6 @@
       margin: 2rem auto;
       padding: 0 1rem;
     }
-    .illustration-container {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-top: 2rem;
-    }
-    .illustration-container img {
-      max-width: 100%;
-      height: auto;
-      flex: 1 1 250px;
-      border-radius: 16px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      background: rgba(255, 255, 255, 0.6);
-      padding: 0.5rem;
-    }
     h2 {
       color: var(--accent);
     }
@@ -122,16 +106,31 @@
     .timeline-item {
       position: relative;
       margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
     .timeline-item::before {
       content: "";
       position: absolute;
       left: -29px;
-      top: 0.25rem;
+      top: 50%;
+      transform: translateY(-50%);
       width: 16px;
       height: 16px;
       background: var(--accent);
       border-radius: 50%;
+    }
+    .timeline-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+    .timeline-item div {
+      flex: 1;
     }
     .timeline-time {
       font-weight: bold;
@@ -170,20 +169,27 @@
 
     <p>Vi gleder oss til å feire den store dagen med familie og venner i vakre Koster! Vielsen finner sted ved Valmutvägen 39a, og festen holdes på Ekenäs hotell. Mer informasjon finnes på denne siden etter hvert.</p>
 
-    <div class="illustration-container">
-      <a href="#program"><img src="kart.png" alt="Kart over lokasjonene" /></a>
-      <a href="#program"><img src="vielse.png" alt="Vielse" /></a>
-      <a href="#program"><img src="hotell.png" alt="Hotell" /></a>
-    </div>
   </section>
 
   <section id="program">
     <h2>Program</h2>
     <ul class="timeline">
-      <li class="timeline-item"><span class="timeline-time">12:00</span> Vielse ved Valmutvägen 39a</li>
-      <li class="timeline-item"><span class="timeline-time">13:00</span> Transport til Ekenäs</li>
-      <li class="timeline-item"><span class="timeline-time">15:00</span> Middag og fest på Ekenäs hotell</li>
-      <li class="timeline-item"><span class="timeline-time">22:00</span> Kveldsmat</li>
+      <li class="timeline-item">
+        <img src="vielse.png" alt="Vielse" />
+        <div><span class="timeline-time">12:00</span> Vielse ved Valmutvägen 39a</div>
+      </li>
+      <li class="timeline-item">
+        <img src="kart.png" alt="Transport" />
+        <div><span class="timeline-time">13:00</span> Transport til Ekenäs</div>
+      </li>
+      <li class="timeline-item">
+        <img src="hotell.png" alt="Hotell" />
+        <div><span class="timeline-time">15:00</span> Middag og fest på Ekenäs hotell</div>
+      </li>
+      <li class="timeline-item">
+        <img src="hotell.png" alt="Kveldsmat" />
+        <div><span class="timeline-time">22:00</span> Kveldsmat</div>
+      </li>
     </ul>
   </section>
 
