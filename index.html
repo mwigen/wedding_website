@@ -27,29 +27,33 @@
 
   <section id="program">
     <h1>Program</h1>
-    <h2>Førfest (fredag)</h2>
-    <ul class="timeline">
-      <li class="timeline-item">
-        <img src="fredag.png" alt="Fredag" />
-        <div>
-          <span class="timeline-time">18:00</span> Uformell samling på Pensjonat Bergdalen
-          <ul class="sub-steps">
-            <li>Oppmøte 16-19</li>
-            <li>Uformell lek og predrinks</li>
-            <li>Middag etter ønske kl 19:30</li>
-          </ul>
-        </div>
-      </li>
-      <li class="timeline-item">
-        <img src="restaurant.png" alt="Restaurant" />
-        <div>
-          <span class="timeline-time">20:00</span> Middag på restaurant
-          <ul class="sub-steps">
-            <li>Reservasjon for de som ønsker å spise ute</li>
-          </ul>
-        </div>
-      </li>
-    <h2>Bryllupsdagen (lørdag)</h2>
+    <div class="program-day">
+      <h2>Førfest (fredag)</h2>
+      <ul class="timeline">
+        <li class="timeline-item">
+          <img src="fredag.png" alt="Fredag" />
+          <div>
+            <span class="timeline-time">18:00</span> Uformell samling på Pensjonat Bergdalen
+            <ul class="sub-steps">
+              <li>Oppmøte 16-19</li>
+              <li>Uformell lek og predrinks</li>
+              <li>Middag etter ønske kl 19:30</li>
+            </ul>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <img src="restaurant.png" alt="Restaurant" />
+          <div>
+            <span class="timeline-time">20:00</span> Middag på restaurant
+            <ul class="sub-steps">
+              <li>Reservasjon for de som ønsker å spise ute</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="program-day">
+      <h2>Bryllupsdagen (lørdag)</h2>
       <ul class="timeline">
         <li class="timeline-item">
           <img src="vielse.png" alt="Vielse" />
@@ -86,6 +90,7 @@
           </div>
         </li>
       </ul>
+    </div>
   </section>
 
   <section>
@@ -107,23 +112,33 @@
   <section>
     <h2>Gi oss beskjed</h2>
     <form action="https://formsubmit.co/8b009dd70cad269011908a21e6491e64" method="POST">
-      <label for="name">Navn</label>
-      <input type="text" id="name" name="Navn" required />
+      <div class="form-group">
+        <label for="name">Navn</label>
+        <input type="text" id="name" name="Navn" required />
+      </div>
 
-      <label for="email">E-post</label>
-      <input type="email" id="email" name="E-post" required />
+      <div class="form-group">
+        <label for="email">E-post</label>
+        <input type="email" id="email" name="E-post" required />
+      </div>
 
-      <label for="attendance">Kommer du?</label>
-      <select id="attendance" name="Deltar">
-        <option value="Ja">Ja, jeg kommer!</option>
-        <option value="Nei">Beklager, jeg kan ikke</option>
-      </select>
+      <div class="form-group">
+        <label for="attendance">Kommer du?</label>
+        <select id="attendance" name="Deltar">
+          <option value="Ja">Ja, jeg kommer!</option>
+          <option value="Nei">Beklager, jeg kan ikke</option>
+        </select>
+      </div>
 
-      <label for="guests">Antall gjester (inkludert deg selv)</label>
-      <input type="number" id="guests" name="Antall gjester" min="1" />
+      <div class="form-group">
+        <label for="guests">Antall gjester (inkludert deg selv)</label>
+        <input type="number" id="guests" name="Antall gjester" min="1" />
+      </div>
 
-      <label for="diet">Matpreferanser/allergier</label>
-      <textarea id="diet" name="Matpreferanser"></textarea>
+      <div class="form-group" style="grid-column: span 2;">
+        <label for="diet">Matpreferanser/allergier</label>
+        <textarea id="diet" name="Matpreferanser"></textarea>
+      </div>
 
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="box">
