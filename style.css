@@ -65,8 +65,18 @@ h2 {
 
 .timeline {
   list-style: none;
-  border-left: 4px solid var(--secondary);
   padding-left: 1.5rem;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 4px;
+  background: var(--secondary);
 }
 
 .timeline-item {
@@ -79,8 +89,8 @@ h2 {
 .timeline-item::before {
   content: '';
   position: absolute;
-  left: -1.15rem;
-  top: 0.5rem;
+  left: -0.5rem;
+  top: 0;
   width: 1rem;
   height: 1rem;
   background: var(--primary);
@@ -97,6 +107,14 @@ h2 {
 .timeline-time {
   font-weight: 600;
   color: var(--primary-dark);
+}
+
+.sub-steps {
+  list-style: disc;
+  margin-top: 0.5rem;
+  margin-left: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text);
 }
 
 form {
