@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full-screen Background with Overlay</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      background: url('watercolor_background_2.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .hero-content {
+      position: relative;
+      padding: 2rem;
+      background: rgba(0,0,0,0.6);
+      border-radius: 8px;
+      max-width: 90vw;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(1.5rem, 5vw, 3rem);
+      margin: 0 0 0.5rem;
+    }
+
+    .hero-content p {
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      margin: 0;
+    }
+
+    .sample-content {
+      padding: 2rem 1rem;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Our Celebration</h1>
+      <p>Scroll down for more information</p>
+    </div>
+  </section>
+
+  <div class="sample-content">
+    <h2>Sample Content</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget co
+      nvallis nibh. Donec imperdiet, augue at tristique placerat, orci lec
+      tus eleifend risus, at fermentum velit urna at libero. Vestibulum co
+      nsectetur feugiat elit, vel posuere sapien faucibus id.
+    </p>
+    <p>
+      Curabitur faucibus augue nec finibus fermentum. Aenean sit amet ex p
+      retium, rhoncus neque sed, fermentum elit. Quisque ut convallis nisl
+      , vel feugiat ligula. Integer volutpat finibus commodo. Nulla facil
+      isi.
+    </p>
+  </div>
+</body>
+</html>
