@@ -35,14 +35,15 @@ body::before {
 
 .hero {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   background: url('anne_morten_banner.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  transition: filter 0.5s ease-out, opacity 0.5s ease-out;
+  transition: filter 0.5s ease-out, height 0.5s ease-out;
+  z-index: 10;
 }
 
 .hero::before {
@@ -62,6 +63,7 @@ body::before {
   color: rgba(255,255,255,0.7);
   border-radius: 8px;
   max-width: 90vw;
+  transition: all 0.5s ease-out;
 }
 
 .hero-content h1 {
@@ -72,6 +74,40 @@ body::before {
 .hero-content p {
   font-size: clamp(1rem, 3vw, 1.5rem);
   margin: 0;
+}
+
+.hero.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+}
+
+.hero.sticky .hero-content {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  transform: none;
+  background: rgba(255,255,255,0.9);
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  max-width: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.hero.sticky .hero-content p {
+  display: none;
+}
+
+.hero.sticky .hero-content h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--primary-dark);
 }
 
 section {
