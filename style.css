@@ -1,5 +1,5 @@
 :root {
-  --bg: #f5f7fa;
+  --bg: #d9e6dc;
   --primary: #5a189a;
   --primary-dark: #49147b;
   --secondary: #e0d4ff;
@@ -14,9 +14,23 @@
 
 body {
   font-family: 'Poppins', Arial, sans-serif;
-  background: url('kart.png') center/cover fixed var(--bg);
+  background-color: var(--bg); /* average color of the new background image */
   color: var(--text);
   line-height: 1.6;
+  position: relative;
+}
+
+/* fixed grayscale background that fades in on scroll */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url('watercolor_background_2.png') center/cover no-repeat;
+  filter: grayscale(100%);
+  opacity: var(--bg-opacity, 0);
+  transition: opacity 0.5s ease-out;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .hero {
@@ -28,6 +42,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  transition: filter 0.5s ease-out, opacity 0.5s ease-out;
 }
 
 .hero::before {
