@@ -20,6 +20,21 @@ body {
   position: relative;
 }
 
+a {
+  color: var(--primary-dark);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 /* fixed grayscale background that fades in on scroll */
 body::before {
   content: '';
@@ -49,7 +64,7 @@ body::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.2);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.15));
 }
 
 .hero-content {
@@ -58,8 +73,10 @@ body::before {
   bottom: 33%;
   transform: translateX(-50%);
   padding: 2rem;
-  background: rgba(255,255,255,0.3);
-  color: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: var(--primary-dark);
   border-radius: 8px;
   max-width: 90vw;
 }
@@ -67,6 +84,7 @@ body::before {
 .hero-content h1 {
   font-size: clamp(1.5rem, 5vw, 3rem);
   margin: 0 0 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero-content p {
