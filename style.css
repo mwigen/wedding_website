@@ -18,6 +18,7 @@ body {
   color: var(--text);
   line-height: 1.6;
   position: relative;
+  overflow-x: hidden; /* prevent horizontal scroll */
 }
 
 a {
@@ -33,6 +34,7 @@ a:hover {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden; /* prevent horizontal scroll */
 }
 
 /* fixed grayscale background that fades in on scroll */
