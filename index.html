@@ -154,21 +154,12 @@
   <script>
     const hero = document.querySelector('.hero');
     const body = document.body;
-    const stickyHeight = 80;
-    const heroHeight = hero.offsetHeight;
 
     window.addEventListener('scroll', () => {
-      const ratio = Math.min(window.scrollY / heroHeight, 1);
+      const ratio = Math.min(window.scrollY / hero.offsetHeight, 1);
       hero.style.filter = `grayscale(${ratio * 100}%)`;
+      hero.style.opacity = `${1 - ratio}`;
       body.style.setProperty('--bg-opacity', ratio * 0.5);
-
-      if (window.scrollY > heroHeight - stickyHeight) {
-        hero.classList.add('sticky');
-        body.style.paddingTop = `${stickyHeight}px`;
-      } else {
-        hero.classList.remove('sticky');
-        body.style.paddingTop = '';
-      }
     });
   </script>
 </body>
