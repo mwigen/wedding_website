@@ -1,7 +1,7 @@
 :root {
   --bg: #d9e6dc;
-  --primary: #5a189a;
-  --primary-dark: #49147b;
+  --primary: #556B2F;
+  --primary-dark: #3b5323;
   --secondary: #e0d4ff;
   --text: #333;
 }
@@ -50,7 +50,7 @@ body::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.2);
 }
 
 .hero-content {
@@ -59,7 +59,7 @@ body::before {
   bottom: 33%;
   transform: translateX(-50%);
   padding: 2rem;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.3);
   color: rgba(255,255,255,0.7);
   border-radius: 8px;
   max-width: 90vw;
@@ -132,13 +132,7 @@ h2 {
 }
 
 .timeline::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.5rem;
-  bottom: 0.5rem;
-  width: 4px;
-  background: var(--secondary);
+  display: none;
 }
 
 .timeline-item {
