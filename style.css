@@ -1,9 +1,10 @@
 :root {
-  --bg: #d9e6dc;
-  --primary: #556B2F;
-  --primary-dark: #3b5323;
-  --secondary: #e0d4ff;
-  --text: #333;
+  --bg: #F0E9CD; /* Light Sand */
+  --primary: #5C6A4E; /* Olive Green */
+  --primary-dark: #4A553E; /* darker Olive Green */
+  --secondary: #DDD5B4; /* Warm Beige */
+  --button: #E3C873; /* Soft Yellow */
+  --text: #2F2F2F; /* Charcoal */
 }
 
 * {
@@ -147,7 +148,7 @@ h2 {
 }
 
 form {
-  background: white;
+  background: var(--secondary);
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
@@ -163,7 +164,7 @@ form {
 
 input, textarea, select {
   padding: 0.75rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--primary);
   border-radius: 4px;
   font-size: 1rem;
 }
@@ -172,19 +173,20 @@ button {
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 4px;
-  background: var(--primary);
-  color: white;
+  background: var(--button);
+  color: var(--primary-dark);
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 button:hover {
-  background: var(--primary-dark);
+  background: var(--primary);
+  color: #fff;
 }
 
 footer {
   text-align: center;
   padding: 2rem;
-  color: #555;
+  color: var(--text);
 }
