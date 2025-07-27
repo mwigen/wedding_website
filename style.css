@@ -85,7 +85,7 @@ body::before {
   color: var(--primary-dark);
   border-radius: 8px;
   width: fit-content;
-  max-width: 90%;
+  max-width: 95%;
 }
 
 .hero-content h1 {
