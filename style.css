@@ -72,16 +72,17 @@ body::before {
 
 .hero-content {
   position: absolute;
+  top: 67%;
   left: 50%;
-  bottom: 33%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   padding: 2rem;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.6);
   color: var(--primary-dark);
   border-radius: 8px;
-  max-width: 90vw;
+  max-width: 600px;
+  width: 90%;
 }
 
 .hero-content h1 {
@@ -189,4 +190,14 @@ footer {
   text-align: center;
   padding: 2rem;
   color: var(--text);
+}
+
+/* Overnatting section indentation */
+#overnatting-text {
+  margin-left: 1.5rem;
+}
+
+.accommodation-list {
+  margin-left: 3rem;
+  list-style: disc;
 }
