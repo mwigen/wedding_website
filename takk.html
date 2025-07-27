@@ -33,6 +33,17 @@
   <div class="message">
     <h1>Takk for svaret!</h1>
     <p>Hilsen Anne & Morten</p>
+    <p class="version"></p>
   </div>
+  <script>
+    fetch('package.json')
+      .then(response => response.json())
+      .then(pkg => {
+        const el = document.querySelector('.version');
+        if (el) {
+          el.textContent = `Versjon ${pkg.version}`;
+        }
+      });
+  </script>
 </body>
 </html>
