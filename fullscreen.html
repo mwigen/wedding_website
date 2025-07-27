@@ -83,5 +83,14 @@
       isi.
     </p>
   </div>
+  <p class="version" style="text-align:center;"></p>
+  <script>
+    fetch('package.json')
+      .then(r => r.json())
+      .then(pkg => {
+        const el = document.querySelector('.version');
+        if (el) el.textContent = `Versjon ${pkg.version}`;
+      });
+  </script>
 </body>
 </html>

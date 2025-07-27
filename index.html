@@ -147,10 +147,20 @@
 
   <footer>
     <p>Mer informasjon kommer...</p>
+    <p class="version"></p>
   </footer>
   <script>
     const hero = document.querySelector('.hero');
     const body = document.body;
+
+    fetch('package.json')
+      .then(response => response.json())
+      .then(pkg => {
+        const el = document.querySelector('.version');
+        if (el) {
+          el.textContent = `Versjon ${pkg.version}`;
+        }
+      });
 
     window.addEventListener('scroll', () => {
       const ratio = Math.min(window.scrollY / hero.offsetHeight, 1);
