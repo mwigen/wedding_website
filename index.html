@@ -151,7 +151,9 @@
   </footer>
   <script>
     const hero = document.querySelector('.hero');
+    const heroText = document.querySelector('.hero-content');
     const body = document.body;
+    const maxShift = heroText.offsetTop - heroText.offsetHeight / 2;
 
     fetch('package.json')
       .then(response => response.json())
@@ -164,8 +166,10 @@
 
     window.addEventListener('scroll', () => {
       const ratio = Math.min(window.scrollY / hero.offsetHeight, 1);
+      const shift = Math.min(window.scrollY, maxShift);
       hero.style.filter = `grayscale(${ratio * 100}%)`;
       hero.style.opacity = `${1 - ratio}`;
+      heroText.style.transform = `translate(-50%, calc(-50% - ${shift}px))`;
       body.style.setProperty('--bg-opacity', ratio * 0.5);
     });
   </script>
