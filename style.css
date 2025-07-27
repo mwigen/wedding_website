@@ -72,23 +72,24 @@ body::before {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.15));
 }
 
+
 .hero-content {
   position: absolute;
-  top: 67%;
+  top: 75%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 2rem;
+  padding: 1.5rem 2rem;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.6);
   color: var(--primary-dark);
   border-radius: 8px;
-  max-width: 600px;
-  width: 90%;
+  width: fit-content;
+  max-width: 90%;
 }
 
 .hero-content h1 {
-  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-size: clamp(1rem, 3.5vw, 2.5rem);
   margin: 0 0 0.5rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
