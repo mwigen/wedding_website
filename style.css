@@ -211,8 +211,8 @@ h3 {
 }
 
 form {
-  background: rgba(221, 213, 180, 0.7);
-  backdrop-filter: blur(4px);
+  background: rgba(221, 213, 180, 0.6);
+  backdrop-filter: blur(6px);
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
