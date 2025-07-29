@@ -241,7 +241,9 @@
     const emailInput = document.getElementById('email');
     const ccInput = document.getElementById('cc');
     if (rsvpForm) {
-      rsvpForm.addEventListener('submit', () => {
+      rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
         if (plusOneCheckbox) {
           plusOneValue.value = plusOneCheckbox.checked ? (plusOneName.value || '') : 'Ingen';
         }
@@ -251,6 +253,16 @@
         if (ccInput && emailInput) {
           ccInput.value = emailInput.value;
         }
+
+        const data = new FormData(rsvpForm);
+
+        fetch('https://script.google.com/macros/s/AKfycbwWGSU48mgDgKYISpIrhIKNd5XAiHRgnqeNlQLppiZJ_EFHu9r9hRTbpz9Cj3PHG_u6/exec', {
+          method: 'POST',
+          body: data,
+          mode: 'no-cors'
+        }).finally(() => {
+          rsvpForm.submit();
+        });
       });
     }
 
