@@ -191,9 +191,21 @@
     const rsvpForm = document.getElementById('rsvp-form');
     if (rsvpForm) {
       rsvpForm.addEventListener('submit', () => {
+        const data = new FormData();
+        data.append('name', document.getElementById('name').value);
+        data.append('email', document.getElementById('email').value);
+        data.append('attending', document.getElementById('attendance').value === 'Ja' ? 'yes' : 'no');
+        data.append('comment', document.getElementById('diet').value);
+        data.append('address', document.getElementById('address').value);
+        if (document.getElementById('plusone').checked) {
+          data.append('plusone', 'yes');
+          data.append('plusone_name', document.getElementById('plusone-name').value);
+        } else {
+          data.append('plusone', 'no');
+        }
         fetch('https://script.google.com/macros/s/AKfycbzbQoYLX0n-QL7iLfK11YGtFtdMk_c8AfxrzAA76Q4MtZ0vvng98JFckvyOJKcpsnPL/exec', {
           method: 'POST',
-          body: new FormData(rsvpForm),
+          body: data,
           mode: 'no-cors'
         });
       });
