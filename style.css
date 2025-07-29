@@ -80,33 +80,40 @@ body::before {
   left: 50%;
   transform: translate(-50%, -50%);
   transition: transform 0.2s ease-out;
-  padding: 1.5rem 2rem;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  color: var(--white);/*color: var(--primary-dark);*/
-  border-radius: 8px;
+  padding: 3rem;
+  background: var(--white);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  color: var(--text);
+  border-radius: 12px;
   width: fit-content;
-  max-width: 95%;
+  max-width: 500px;
+  font-family: 'Alice', serif;
+  text-align: center;
 }
 
-.hero-content h1 {
-  
-  opacity: 0.75;
-  font-weight: 100;
-  font-family: 'Caladea', serif;
-  font-size: clamp(1.0rem, 4vw, 2.5rem);
-  margin: 0 0 0.5rem;
-  /*text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);*/
-  white-space: nowrap; /* Prevents text from wrapping into multiple lines */
-  overflow: hidden; /* Ensures that extra text is hidden if it exceeds the container */
-  text-overflow: ellipsis; /* Adds "..." if the text overflows */
+.hero-content .names {
+  font-family: 'Alice', serif;
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: normal;
+  margin: 0.5rem 0;
+}
+
+.hero-content .tagline {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.hero-content .meta,
+.hero-content .location {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .hero-content p {
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  opacity: 0.65;
-  font-weight: 50;
   margin: 0;
 }
 
@@ -120,6 +127,21 @@ section {
 body > section:first-of-type {
   position: relative;
   z-index: 1;
+}
+
+.invite-text {
+  background: var(--white);
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: 'Alice', serif;
+}
+
+.invite-text p {
+  margin-bottom: 1rem;
 }
 
 h2 {
