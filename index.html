@@ -228,32 +228,17 @@
 
     const rsvpForm = document.getElementById('rsvp-form');
     if (rsvpForm) {
-      rsvpForm.addEventListener('submit', () => {
+      rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-        const data = new FormData();
-        const attending = attendanceYes && attendanceYes.checked;
-        const fridayRadio = document.querySelector('input[name="Fredag"]:checked');
-        const fridayValue = fridayRadio ? (fridayRadio.value === 'Ja' ? 'yes' : 'no') : 'no';
-
-        data.append('name', document.getElementById('name').value);
-        data.append('email', document.getElementById('email').value);
-        data.append('address', document.getElementById('address').value);
-        data.append('attending', attending ? 'yes' : 'no');
-        data.append('friday', attending ? fridayValue : 'no');
-        data.append('comment', document.getElementById('diet').value);
-
-        const overnatting = document.querySelector('input[name="Overnatting"]:checked');
-        data.append('overnatting', overnatting ? overnatting.value : '');
-        data.append('overnatting_annet', overnightOther && overnightOther.checked ? overnightOtherText.value : '');
-
-        const plusOneChecked = plusOneCheckbox && plusOneCheckbox.checked;
-        data.append('plusone', plusOneChecked ? 'yes' : 'no');
-        data.append('plusone_name', plusOneChecked ? document.getElementById('plusone-name').value : '');
+        const data = new FormData(rsvpForm);
 
         fetch('https://script.google.com/macros/s/AKfycbzbQoYLX0n-QL7iLfK11YGtFtdMk_c8AfxrzAA76Q4MtZ0vvng98JFckvyOJKcpsnPL/exec', {
           method: 'POST',
           body: data,
           mode: 'no-cors'
+        }).finally(() => {
+          window.location.href = rsvpForm.querySelector('input[name="_next"]').value;
         });
       });
     }
