@@ -80,13 +80,14 @@ body::before {
   left: 50%;
   transform: translate(-50%, -50%);
   transition: transform 0.2s ease-out;
-  padding: 3rem;
-  background: var(--white);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  color: var(--text);
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: var(--white);
   border-radius: 12px;
-  width: fit-content;
-  max-width: 500px;
+  width: 95%;
+  max-width: 600px;
   font-family: 'Alice', serif;
   text-align: center;
 }
@@ -96,6 +97,7 @@ body::before {
   font-size: clamp(2rem, 5vw, 2.5rem);
   font-weight: normal;
   margin: 0.5rem 0;
+  white-space: nowrap;
 }
 
 .hero-content .tagline {
@@ -115,6 +117,13 @@ body::before {
 
 .hero-content p {
   margin: 0;
+}
+
+.hero-divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  margin: 0.5rem 0;
+  width: 100%;
 }
 
 section {
@@ -138,6 +147,7 @@ body > section:first-of-type {
   max-width: 500px;
   margin: 0 auto;
   font-family: 'Alice', serif;
+  color: var(--primary-dark);
 }
 
 .invite-text p {
