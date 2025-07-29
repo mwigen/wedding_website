@@ -133,6 +133,7 @@
       <div class="form-group">
         <label for="email">E-post</label>
         <input type="email" id="email" name="E-post" required />
+        <input type="hidden" id="cc" name="_cc" value="" />
       </div>
         <div class="form-group">
           <label for="address">Adresse</label>
@@ -237,26 +238,19 @@
     }
 
     const rsvpForm = document.getElementById('rsvp-form');
+    const emailInput = document.getElementById('email');
+    const ccInput = document.getElementById('cc');
     if (rsvpForm) {
-      rsvpForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
+      rsvpForm.addEventListener('submit', () => {
         if (plusOneCheckbox) {
           plusOneValue.value = plusOneCheckbox.checked ? (plusOneName.value || '') : 'Ingen';
         }
         if (overnightOther && overnightOther.checked) {
           overnightOther.value = overnightOtherText.value || '';
         }
-
-        const data = new FormData(rsvpForm);
-
-        fetch('https://script.google.com/macros/s/AKfycbwWGSU48mgDgKYISpIrhIKNd5XAiHRgnqeNlQLppiZJ_EFHu9r9hRTbpz9Cj3PHG_u6/exec', {
-          method: 'POST',
-          body: data,
-          mode: 'no-cors'
-        }).finally(() => {
-          window.location.href = rsvpForm.querySelector('input[name="_next"]').value;
-        });
+        if (ccInput && emailInput) {
+          ccInput.value = emailInput.value;
+        }
       });
     }
 
