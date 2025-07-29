@@ -205,8 +205,13 @@
     }
 
     if (attendanceYes) {
+      const fridayYes = document.querySelector('input[name="Fredag"][value="Ja"]');
+      const fridayNo = document.querySelector('input[name="Fredag"][value="Nei"]');
       const toggleFriday = () => {
         fridayGroup.style.display = attendanceYes.checked ? 'flex' : 'none';
+        if (!attendanceYes.checked && fridayNo) {
+          fridayNo.checked = true;
+        }
       };
       attendanceYes.addEventListener('change', toggleFriday);
       if (attendanceNo) attendanceNo.addEventListener('change', toggleFriday);
@@ -227,26 +232,24 @@
 
         const data = new FormData();
         const attending = attendanceYes && attendanceYes.checked;
+        const fridayRadio = document.querySelector('input[name="Fredag"]:checked');
+        const fridayValue = fridayRadio ? (fridayRadio.value === 'Ja' ? 'yes' : 'no') : 'no';
+
         data.append('name', document.getElementById('name').value);
         data.append('email', document.getElementById('email').value);
-        data.append('attending', attending ? 'yes' : 'no');
-        if (attending) {
-          const friday = document.querySelector('input[name="Fredag"]:checked');
-          if (friday) data.append('friday', friday.value === 'Ja' ? 'yes' : 'no');
-        }
-        data.append('comment', document.getElementById('diet').value);
         data.append('address', document.getElementById('address').value);
+        data.append('attending', attending ? 'yes' : 'no');
+        data.append('friday', attending ? fridayValue : 'no');
+        data.append('comment', document.getElementById('diet').value);
+
         const overnatting = document.querySelector('input[name="Overnatting"]:checked');
-        if (overnatting) data.append('overnatting', overnatting.value);
-        if (overnightOther && overnightOther.checked) {
-          data.append('overnatting_annet', overnightOtherText.value);
-        }
-        if (document.getElementById('plusone').checked) {
-          data.append('plusone', 'yes');
-          data.append('plusone_name', document.getElementById('plusone-name').value);
-        } else {
-          data.append('plusone', 'no');
-        }
+        data.append('overnatting', overnatting ? overnatting.value : '');
+        data.append('overnatting_annet', overnightOther && overnightOther.checked ? overnightOtherText.value : '');
+
+        const plusOneChecked = plusOneCheckbox && plusOneCheckbox.checked;
+        data.append('plusone', plusOneChecked ? 'yes' : 'no');
+        data.append('plusone_name', plusOneChecked ? document.getElementById('plusone-name').value : '');
+
         fetch('https://script.google.com/macros/s/AKfycbzbQoYLX0n-QL7iLfK11YGtFtdMk_c8AfxrzAA76Q4MtZ0vvng98JFckvyOJKcpsnPL/exec', {
           method: 'POST',
           body: data,
