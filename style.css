@@ -139,12 +139,11 @@ body > section:first-of-type {
 }
 
 .invite-text {
-  background: var(--secondary);
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  grid-template-columns: 1fr;
-  gap: 1rem;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   text-align: center;
   margin: 0 auto;
   font-family: 'Alice', serif;
@@ -212,7 +211,8 @@ h3 {
 }
 
 form {
-  background: var(--secondary);
+  background: rgba(221, 213, 180, 0.7);
+  backdrop-filter: blur(4px);
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
