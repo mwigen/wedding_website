@@ -45,7 +45,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: url('watercolor_background_2.png') center/cover no-repeat;
+  background: url('watercolor_background.png') center/cover no-repeat;
   filter: grayscale(100%);
   opacity: var(--bg-opacity, 0);
   transition: opacity 0.5s ease-out;
@@ -139,14 +139,16 @@ body > section:first-of-type {
 }
 
 .invite-text {
-  background: var(--white);
-  padding: 3rem;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  grid-template-columns: 1fr;
+  gap: 1rem;
   text-align: center;
-  max-width: 500px;
   margin: 0 auto;
   font-family: 'Alice', serif;
+  font-size: 1.2rem;
   color: var(--primary-dark);
 }
 
@@ -174,7 +176,6 @@ h3 {
 
 .timeline {
   list-style: none;
-  margin-left: 1.75rem;
   padding-left: 1.5rem;
   position: relative;
 }
