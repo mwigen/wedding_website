@@ -144,7 +144,7 @@
 
       <div class="form-group">
         <label for="email">E-post</label>
-        <input type="email" id="email" name="E-post" required />
+        <input type="email" id="email" name="email" required />
         <input type="hidden" id="cc" name="_cc" value="" />
       </div>
         <div class="form-group">
@@ -166,16 +166,11 @@
       <div class="form-group accommodation-group">
         <label>Overnatting</label>
         <label><input type="radio" name="Overnatting" id="overnat-ekenas" value="Ekenäs hotell" checked> Ekenäs hotell</label>
-        <label><input type="radio" name="Overnatting" id="overnat-other" value=""> Annet</label>
-        <input type="text" id="overnat-other-text" placeholder="Spesifiser annet" style="display: none;" />
+        <label><input type="radio" name="Overnatting" id="overnat-other" value="Annet"> Annet</label>
       </div>
 
       <div class="form-group">
         <label><input type="checkbox" id="plusone"> Følge</label>
-      </div>
-      <div class="form-group plusone-name" style="display: none;">
-        <label for="plusone-name">Navn på følge</label>
-        <input type="text" id="plusone-name" />
       </div>
       <input type="hidden" id="plusone-value" name="Følge" value="Ingen">
 
@@ -187,6 +182,7 @@
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="box">
       <input type="hidden" name="_next" value="https://mwigen.github.io/wedding_website/takk">
+      <input type="hidden" name="_autoresponse" value="Takk for svaret! Vi har registrert dine opplysninger." />
 
       <button type="submit">Send svar</button>
     </form>
@@ -201,23 +197,17 @@
     const heroText = document.querySelector('.hero-content');
     const body = document.body;
     const plusOneCheckbox = document.getElementById('plusone');
-    const plusOneGroup = document.querySelector('.plusone-name');
-    const plusOneName = document.getElementById('plusone-name');
     const plusOneValue = document.getElementById('plusone-value');
     const attendanceYes = document.getElementById('attendance-yes');
     const attendanceNo = document.getElementById('attendance-no');
     const fridayGroup = document.querySelector('.friday-group');
-    const overnightOther = document.getElementById('overnat-other');
-    const overnightOtherText = document.getElementById('overnat-other-text');
     const maxShift = heroText.offsetTop - heroText.offsetHeight / 2;
 
     if (plusOneCheckbox) {
       const updatePlusOne = () => {
-        plusOneGroup.style.display = plusOneCheckbox.checked ? 'flex' : 'none';
-        plusOneValue.value = plusOneCheckbox.checked ? (plusOneName.value || '') : 'Ingen';
+        plusOneValue.value = plusOneCheckbox.checked ? 'Ja' : 'Ingen';
       };
       plusOneCheckbox.addEventListener('change', updatePlusOne);
-      if (plusOneName) plusOneName.addEventListener('input', updatePlusOne);
       updatePlusOne();
     }
 
@@ -235,19 +225,6 @@
       toggleFriday();
     }
 
-    if (overnightOther) {
-      const toggleOvernight = () => {
-        overnightOtherText.style.display = overnightOther.checked ? 'block' : 'none';
-        if (overnightOther.checked) {
-          overnightOther.value = overnightOtherText.value || '';
-        }
-      };
-      document.querySelectorAll('input[name="Overnatting"]').forEach(r => r.addEventListener('change', toggleOvernight));
-      if (overnightOtherText) overnightOtherText.addEventListener('input', () => {
-        if (overnightOther.checked) overnightOther.value = overnightOtherText.value || '';
-      });
-      toggleOvernight();
-    }
 
     const rsvpForm = document.getElementById('rsvp-form');
     const emailInput = document.getElementById('email');
@@ -257,10 +234,7 @@
         e.preventDefault();
 
         if (plusOneCheckbox) {
-          plusOneValue.value = plusOneCheckbox.checked ? (plusOneName.value || '') : 'Ingen';
-        }
-        if (overnightOther && overnightOther.checked) {
-          overnightOther.value = overnightOtherText.value || '';
+          plusOneValue.value = plusOneCheckbox.checked ? 'Ja' : 'Ingen';
         }
         if (ccInput && emailInput) {
           ccInput.value = emailInput.value;
