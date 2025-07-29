@@ -127,7 +127,7 @@
 
   <section>
     <h2>Gi oss beskjed</h2>
-    <form action="https://formsubmit.co/8b009dd70cad269011908a21e6491e64" method="POST">
+    <form id="rsvp-form" action="https://formsubmit.co/8b009dd70cad269011908a21e6491e64" method="POST">
       <div class="form-group">
         <label for="name">Navn</label>
         <input type="text" id="name" name="Navn" required />
@@ -169,18 +169,7 @@
       <button type="submit">Send svar</button>
     </form>
   </section>
-  <section>
-      <form action="https://script.google.com/macros/s/AKfycbzbQoYLX0n-QL7iLfK11YGtFtdMk_c8AfxrzAA76Q4MtZ0vvng98JFckvyOJKcpsnPL/exec" method="POST">
-      <input type="text" name="name" placeholder="Navn" required><br>
-      <input type="email" name="email" placeholder="Epost" required><br>
-      <select name="attending" required>
-        <option value="yes">Kommer</option>
-        <option value="no">Kan ikke</option>
-      </select><br>
-      <textarea name="comment" placeholder="Kommentarer"></textarea><br>
-      <button type="submit">Send inn</button>
-    </form>
-  </section>
+
 
   <footer>
     </p>Copyright © 2025 Anne & Morten</p>
@@ -196,6 +185,29 @@
     if (plusOneCheckbox) {
       plusOneCheckbox.addEventListener('change', () => {
         plusOneGroup.style.display = plusOneCheckbox.checked ? 'flex' : 'none';
+      });
+    }
+
+    const rsvpForm = document.getElementById('rsvp-form');
+    if (rsvpForm) {
+      rsvpForm.addEventListener('submit', () => {
+        const data = new FormData();
+        data.append('name', document.getElementById('name').value);
+        data.append('email', document.getElementById('email').value);
+        data.append('attending', document.getElementById('attendance').value === 'Ja' ? 'yes' : 'no');
+        data.append('comment', document.getElementById('diet').value);
+        data.append('address', document.getElementById('address').value);
+        if (document.getElementById('plusone').checked) {
+          data.append('plusone', 'yes');
+          data.append('plusone_name', document.getElementById('plusone-name').value);
+        } else {
+          data.append('plusone', 'no');
+        }
+        fetch('https://script.google.com/macros/s/AKfycbzbQoYLX0n-QL7iLfK11YGtFtdMk_c8AfxrzAA76Q4MtZ0vvng98JFckvyOJKcpsnPL/exec', {
+          method: 'POST',
+          body: data,
+          mode: 'no-cors'
+        });
       });
     }
 
