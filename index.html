@@ -139,11 +139,22 @@
           <input type="text" id="address" name="Adresse" />
         </div>
       <div class="form-group">
-        <label for="attendance">Kommer du?</label>
-        <select id="attendance" name="Deltar">
-          <option value="Ja">Ja, jeg kommer!</option>
-          <option value="Nei">Beklager, jeg kan ikke</option>
-        </select>
+        <label>Kommer du?</label>
+        <label><input type="radio" name="Deltar" id="attendance-yes" value="Ja" checked> Ja, jeg kommer!</label>
+        <label><input type="radio" name="Deltar" id="attendance-no" value="Nei"> Beklager, jeg kan ikke</label>
+      </div>
+
+      <div class="form-group friday-group" style="display: none;">
+        <label>Deltar du på fredag også?</label>
+        <label><input type="radio" name="Fredag" value="Ja" checked> Ja</label>
+        <label><input type="radio" name="Fredag" value="Nei"> Nei</label>
+      </div>
+
+      <div class="form-group accommodation-group">
+        <label>Overnatting</label>
+        <label><input type="radio" name="Overnatting" id="overnat-ekenas" value="Ekenäs hotell" checked> Ekenäs hotell</label>
+        <label><input type="radio" name="Overnatting" id="overnat-other" value="Annet"> Annet</label>
+        <input type="text" id="overnat-other-text" name="Overnatting-annet" placeholder="Spesifiser annet" style="display: none;" />
       </div>
 
       <div class="form-group">
@@ -177,6 +188,11 @@
     const body = document.body;
     const plusOneCheckbox = document.getElementById('plusone');
     const plusOneGroup = document.querySelector('.plusone-name');
+    const attendanceYes = document.getElementById('attendance-yes');
+    const attendanceNo = document.getElementById('attendance-no');
+    const fridayGroup = document.querySelector('.friday-group');
+    const overnightOther = document.getElementById('overnat-other');
+    const overnightOtherText = document.getElementById('overnat-other-text');
     const maxShift = heroText.offsetTop - heroText.offsetHeight / 2;
 
     if (plusOneCheckbox) {
@@ -185,16 +201,43 @@
       });
     }
 
+    if (attendanceYes) {
+      const toggleFriday = () => {
+        fridayGroup.style.display = attendanceYes.checked ? 'flex' : 'none';
+      };
+      attendanceYes.addEventListener('change', toggleFriday);
+      if (attendanceNo) attendanceNo.addEventListener('change', toggleFriday);
+      toggleFriday();
+    }
+
+    if (overnightOther) {
+      const toggleOvernight = () => {
+        overnightOtherText.style.display = overnightOther.checked ? 'block' : 'none';
+      };
+      document.querySelectorAll('input[name="Overnatting"]').forEach(r => r.addEventListener('change', toggleOvernight));
+      toggleOvernight();
+    }
+
     const rsvpForm = document.getElementById('rsvp-form');
     if (rsvpForm) {
       rsvpForm.addEventListener('submit', () => {
 
         const data = new FormData();
+        const attending = attendanceYes && attendanceYes.checked;
         data.append('name', document.getElementById('name').value);
         data.append('email', document.getElementById('email').value);
-        data.append('attending', document.getElementById('attendance').value === 'Ja' ? 'yes' : 'no');
+        data.append('attending', attending ? 'yes' : 'no');
+        if (attending) {
+          const friday = document.querySelector('input[name="Fredag"]:checked');
+          if (friday) data.append('friday', friday.value === 'Ja' ? 'yes' : 'no');
+        }
         data.append('comment', document.getElementById('diet').value);
         data.append('address', document.getElementById('address').value);
+        const overnatting = document.querySelector('input[name="Overnatting"]:checked');
+        if (overnatting) data.append('overnatting', overnatting.value);
+        if (overnightOther && overnightOther.checked) {
+          data.append('overnatting_annet', overnightOtherText.value);
+        }
         if (document.getElementById('plusone').checked) {
           data.append('plusone', 'yes');
           data.append('plusone_name', document.getElementById('plusone-name').value);
