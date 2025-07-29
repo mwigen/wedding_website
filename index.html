@@ -133,8 +133,11 @@
       </div>
 
       <div class="form-group">
-        <label for="guests">Antall gjester (inkludert deg selv)</label>
-        <input type="number" id="guests" name="Antall gjester" min="1" />
+        <label><input type="checkbox" id="plusone" name="Følge"> Følge</label>
+      </div>
+      <div class="form-group plusone-name" style="display: none;">
+        <label for="plusone-name">Navn på følge</label>
+        <input type="text" id="plusone-name" name="Følgenavn" />
       </div>
 
       <div class="form-group">
@@ -158,7 +161,15 @@
     const hero = document.querySelector('.hero');
     const heroText = document.querySelector('.hero-content');
     const body = document.body;
+    const plusOneCheckbox = document.getElementById('plusone');
+    const plusOneGroup = document.querySelector('.plusone-name');
     const maxShift = heroText.offsetTop - heroText.offsetHeight / 2;
+
+    if (plusOneCheckbox) {
+      plusOneCheckbox.addEventListener('change', () => {
+        plusOneGroup.style.display = plusOneCheckbox.checked ? 'flex' : 'none';
+      });
+    }
 
     fetch('package.json')
       .then(response => response.json())
