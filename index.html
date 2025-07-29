@@ -191,6 +191,7 @@
     const rsvpForm = document.getElementById('rsvp-form');
     if (rsvpForm) {
       rsvpForm.addEventListener('submit', () => {
+
         const data = new FormData();
         data.append('name', document.getElementById('name').value);
         data.append('email', document.getElementById('email').value);
