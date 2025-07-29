@@ -153,17 +153,18 @@
       <div class="form-group accommodation-group">
         <label>Overnatting</label>
         <label><input type="radio" name="Overnatting" id="overnat-ekenas" value="Ekenäs hotell" checked> Ekenäs hotell</label>
-        <label><input type="radio" name="Overnatting" id="overnat-other" value="Annet"> Annet</label>
-        <input type="text" id="overnat-other-text" name="Overnatting-annet" placeholder="Spesifiser annet" style="display: none;" />
+        <label><input type="radio" name="Overnatting" id="overnat-other" value=""> Annet</label>
+        <input type="text" id="overnat-other-text" placeholder="Spesifiser annet" style="display: none;" />
       </div>
 
       <div class="form-group">
-        <label><input type="checkbox" id="plusone" name="Følge"> Følge</label>
+        <label><input type="checkbox" id="plusone"> Følge</label>
       </div>
       <div class="form-group plusone-name" style="display: none;">
         <label for="plusone-name">Navn på følge</label>
-        <input type="text" id="plusone-name" name="Følgenavn" />
+        <input type="text" id="plusone-name" />
       </div>
+      <input type="hidden" id="plusone-value" name="Følge" value="Ingen">
 
       <div class="form-group">
         <label for="diet">Matpreferanser/allergier</label>
@@ -188,6 +189,8 @@
     const body = document.body;
     const plusOneCheckbox = document.getElementById('plusone');
     const plusOneGroup = document.querySelector('.plusone-name');
+    const plusOneName = document.getElementById('plusone-name');
+    const plusOneValue = document.getElementById('plusone-value');
     const attendanceYes = document.getElementById('attendance-yes');
     const attendanceNo = document.getElementById('attendance-no');
     const fridayGroup = document.querySelector('.friday-group');
@@ -196,9 +199,13 @@
     const maxShift = heroText.offsetTop - heroText.offsetHeight / 2;
 
     if (plusOneCheckbox) {
-      plusOneCheckbox.addEventListener('change', () => {
+      const updatePlusOne = () => {
         plusOneGroup.style.display = plusOneCheckbox.checked ? 'flex' : 'none';
-      });
+        plusOneValue.value = plusOneCheckbox.checked ? (plusOneName.value || '') : 'Ingen';
+      };
+      plusOneCheckbox.addEventListener('change', updatePlusOne);
+      if (plusOneName) plusOneName.addEventListener('input', updatePlusOne);
+      updatePlusOne();
     }
 
     if (attendanceYes) {
@@ -218,8 +225,14 @@
     if (overnightOther) {
       const toggleOvernight = () => {
         overnightOtherText.style.display = overnightOther.checked ? 'block' : 'none';
+        if (overnightOther.checked) {
+          overnightOther.value = overnightOtherText.value || '';
+        }
       };
       document.querySelectorAll('input[name="Overnatting"]').forEach(r => r.addEventListener('change', toggleOvernight));
+      if (overnightOtherText) overnightOtherText.addEventListener('input', () => {
+        if (overnightOther.checked) overnightOther.value = overnightOtherText.value || '';
+      });
       toggleOvernight();
     }
 
@@ -227,6 +240,13 @@
     if (rsvpForm) {
       rsvpForm.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        if (plusOneCheckbox) {
+          plusOneValue.value = plusOneCheckbox.checked ? (plusOneName.value || '') : 'Ingen';
+        }
+        if (overnightOther && overnightOther.checked) {
+          overnightOther.value = overnightOtherText.value || '';
+        }
 
         const data = new FormData(rsvpForm);
 
