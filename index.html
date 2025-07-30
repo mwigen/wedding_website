@@ -169,10 +169,20 @@
         <label><input type="radio" name="Overnatting" id="overnat-other" value="Annet"> Annet</label>
       </div>
 
+      <div class="form-group other-accommodation" style="display: none;">
+        <label for="accommodation-other">Annet</label>
+        <input type="text" id="accommodation-other" name="Annet" />
+      </div>
+
       <div class="form-group">
         <label><input type="checkbox" id="plusone"> Følge</label>
       </div>
-      <input type="hidden" id="plusone-value" name="Følge" value="Ingen">
+      <input type="hidden" id="plusone-value" name="FølgeDeltar" value="Ingen">
+
+      <div class="form-group plusone-name" style="display: none;">
+        <label for="plusone-name">Følge</label>
+        <input type="text" id="plusone-name" name="Følge" />
+      </div>
 
       <div class="form-group">
         <label for="diet">Matpreferanser/allergier (spesifiser hvem det gjelder)</label>
@@ -198,6 +208,11 @@
     const body = document.body;
     const plusOneCheckbox = document.getElementById('plusone');
     const plusOneValue = document.getElementById('plusone-value');
+    const plusOneNameGroup = document.querySelector('.plusone-name');
+    const plusOneNameInput = document.getElementById('plusone-name');
+    const overnatOther = document.getElementById('overnat-other');
+    const overnatEkenas = document.getElementById('overnat-ekenas');
+    const otherAccommodationGroup = document.querySelector('.other-accommodation');
     const attendanceYes = document.getElementById('attendance-yes');
     const attendanceNo = document.getElementById('attendance-no');
     const fridayGroup = document.querySelector('.friday-group');
@@ -206,9 +221,30 @@
     if (plusOneCheckbox) {
       const updatePlusOne = () => {
         plusOneValue.value = plusOneCheckbox.checked ? 'Ja' : 'Ingen';
+        if (plusOneNameGroup) {
+          plusOneNameGroup.style.display = plusOneCheckbox.checked ? 'flex' : 'none';
+          if (!plusOneCheckbox.checked && plusOneNameInput) {
+            plusOneNameInput.value = '';
+          }
+        }
       };
       plusOneCheckbox.addEventListener('change', updatePlusOne);
       updatePlusOne();
+    }
+
+    if (overnatOther) {
+      const toggleAccommodation = () => {
+        if (otherAccommodationGroup) {
+          otherAccommodationGroup.style.display = overnatOther.checked ? 'flex' : 'none';
+          if (!overnatOther.checked) {
+            const input = otherAccommodationGroup.querySelector('input');
+            if (input) input.value = '';
+          }
+        }
+      };
+      overnatOther.addEventListener('change', toggleAccommodation);
+      if (overnatEkenas) overnatEkenas.addEventListener('change', toggleAccommodation);
+      toggleAccommodation();
     }
 
     if (attendanceYes) {
@@ -235,6 +271,12 @@
 
         if (plusOneCheckbox) {
           plusOneValue.value = plusOneCheckbox.checked ? 'Ja' : 'Ingen';
+          if (plusOneNameGroup) {
+            plusOneNameGroup.style.display = plusOneCheckbox.checked ? 'flex' : 'none';
+            if (!plusOneCheckbox.checked && plusOneNameInput) {
+              plusOneNameInput.value = '';
+            }
+          }
         }
         if (ccInput && emailInput) {
           ccInput.value = emailInput.value;
