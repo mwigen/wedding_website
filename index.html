@@ -120,7 +120,12 @@
   <section id="overnatting">
     <h2>Overnatting</h2>
     <p>Dere kan selv velge hvor dere vil overnatte på Koster, men <a href="https://www.ekenashavshotell.se/">Ekenäs havshotell</a> holder av plasser til gjester til bryllupet.  </p>
-    <p>For bokning på hotellet Bookes per <a href="bokning@ekenashavshotell.se">email</a> for gjester med referanse til bryllupet (XXXX SEK / natt) </p>
+    <p>For bokning på hotellet Bookes per <a href="bokning@ekenashavshotell.se">email</a> for gjester med referanse til bryllupet med følgende priser for rom:</p>
+    <ul class="sub-steps">
+      <li>Enkeltrom: 1695 SEK per natt</li>
+      <li>Dobbeltrom: 1995 SEK per natt</li>
+      <li>Dobbeltrom superior med havutsikt: 3295 SEK per natt</li>
+    </ul>
     <p>Dersom dere velger å bo på andre steder enn Ekenäs havshotell vær oppmerskom på at øya er bilfri, og at avstander til ferjekaj og lokasjoner i programmet bør taes hensyn til. Ta gjerne kontakt med en av oss for rådføring for andre alternativer</p>
   </section>
 
@@ -158,9 +163,9 @@
       </div>
 
       <div class="form-group friday-group" style="display: none;">
-        <label>Deltar du på fredag også?</label>
-        <label><input type="radio" name="Fredag" value="Ja" checked> Ja</label>
-        <label><input type="radio" name="Fredag" value="Nei"> Nei</label>
+        <label>Deltagelse i middag fredag?</label>
+        <label><input type="radio" name="Middag fredag" value="Ja" checked> Ja</label>
+        <label><input type="radio" name="Middag fredag" value="Nei"> Nei</label>
       </div>
 
       <div class="form-group accommodation-group">
@@ -248,8 +253,8 @@
     }
 
     if (attendanceYes) {
-      const fridayYes = document.querySelector('input[name="Fredag"][value="Ja"]');
-      const fridayNo = document.querySelector('input[name="Fredag"][value="Nei"]');
+      const fridayYes = document.querySelector('input[name="Middag fredag"][value="Ja"]');
+      const fridayNo = document.querySelector('input[name="Middag fredag"][value="Nei"]');
       const toggleFriday = () => {
         fridayGroup.style.display = attendanceYes.checked ? 'flex' : 'none';
         if (!attendanceYes.checked && fridayNo) {
