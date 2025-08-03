@@ -40,6 +40,10 @@ html {
   overflow-x: hidden; /* prevent horizontal scroll */
 }
 
+p {
+  margin-bottom: 1rem;
+}
+
 /* fixed grayscale background that fades in on scroll */
 body::before {
   content: '';
