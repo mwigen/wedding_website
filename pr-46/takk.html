@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="auth.js"></script>
+  <title>Takk for svaret!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: var(--bg);
+    }
+    .message {
+      background: var(--secondary);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    h1 {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="message">
+    <h1>Takk for svaret!</h1>
+    <p>Gi oss beskjed om det er endringer i registrert deltagelse eller overnatting</p>
+    <p>Hilsen Anne & Morten</p>
+  </div>
+  <script>
+    fetch('package.json')
+      .then(response => response.json())
+      .then(pkg => {
+        const el = document.querySelector('.version');
+        if (el) {
+          el.textContent = `Versjon ${pkg.version}`;
+        }
+      });
+  </script>
+</body>
+</html>
