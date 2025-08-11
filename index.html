@@ -308,6 +308,10 @@
         }
 
         const data = new FormData(rsvpForm);
+        const songInput = document.getElementById('song');
+        if (songInput) {
+          data.append('song', songInput.value);
+        }
 
         fetch('https://script.google.com/macros/s/AKfycbwWGSU48mgDgKYISpIrhIKNd5XAiHRgnqeNlQLppiZJ_EFHu9r9hRTbpz9Cj3PHG_u6/exec', {
           method: 'POST',
