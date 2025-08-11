@@ -253,6 +253,13 @@ button:hover {
   color: #fff;
 }
 
+button:disabled {
+  background: var(--secondary);
+  color: var(--primary-dark);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 footer {
   text-align: center;
   padding: 2rem;
