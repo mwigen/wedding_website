@@ -260,6 +260,15 @@ button:disabled {
   opacity: 0.6;
 }
 
+.fallback-message {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  padding: 1rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
 footer {
   text-align: center;
   padding: 2rem;
