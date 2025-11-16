@@ -220,6 +220,11 @@
       <input type="hidden" name="_autoresponse" value="Takk for svaret! Vi har registrert dine opplysninger." />
 
       <button type="submit">Send svar</button>
+      <div id="fallback-message" class="fallback-message" role="status" aria-live="polite" style="display: none;">
+        Det ser ut til at skjemaet vårt har problemer akkurat nå. Send gjerne en bekreftelse til Anne (482 09 671 /
+        <a href="mailto:annehhaagense@gmail.com">annehhaagense@gmail.com</a>) eller Morten (991 67 197 /
+        <a href="mailto:morten.wigen@gmail.com">morten.wigen@gmail.com</a>).
+      </div>
     </form>
   </section>
 
@@ -290,8 +295,9 @@
     const rsvpForm = document.getElementById('rsvp-form');
     const emailInput = document.getElementById('email');
     const ccInput = document.getElementById('cc');
+    const fallbackMessage = document.getElementById('fallback-message');
     if (rsvpForm) {
-      rsvpForm.addEventListener('submit', (e) => {
+      rsvpForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         if (plusOneCheckbox) {
@@ -313,20 +319,52 @@
           submitButton.textContent = 'Sender...';
         }
 
-        const data = new FormData(rsvpForm);
+        const formData = new FormData(rsvpForm);
         const songInput = document.getElementById('song');
         if (songInput) {
-          data.append('song', songInput.value);
+          formData.append('song', songInput.value);
         }
+
+        const actionUrl = rsvpForm.getAttribute('action');
+        const nextInput = rsvpForm.querySelector('input[name="_next"]');
+
+        const googleData = new FormData();
+        formData.forEach((value, key) => googleData.append(key, value));
 
         fetch('https://script.google.com/macros/s/AKfycbx3DJgM3nWgRE_A9hcxIbMindeTt-apYFWBpP0dF9I2xk-Izu9Kx_0tEW5FlohMNnM/exec', {
           method: 'POST',
-          body: data,
+          body: googleData,
           mode: 'no-cors',
           keepalive: true
         });
 
-        rsvpForm.submit();
+        if (fallbackMessage) {
+          fallbackMessage.style.display = 'none';
+        }
+
+        if (!actionUrl) return;
+
+        try {
+          await fetch(actionUrl, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors',
+            keepalive: true
+          });
+
+          if (nextInput && nextInput.value) {
+            window.location.href = nextInput.value;
+          }
+        } catch (error) {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Send svar';
+          }
+
+          if (fallbackMessage) {
+            fallbackMessage.style.display = 'block';
+          }
+        }
       });
     }
 
