@@ -188,8 +188,8 @@
 
       <div class="form-group friday-group" style="display: none;">
         <label>Deltagelse i middag på fredag?</label>
-        <label><input type="radio" name="Middag fredag" value="Ja" checked> Ja</label>
-        <label><input type="radio" name="Middag fredag" value="Nei"> Nei</label>
+        <label><input type="radio" name="Fredag" value="Ja" checked> Ja</label>
+        <label><input type="radio" name="Fredag" value="Nei"> Nei</label>
       </div>
 
       <div class="form-group accommodation-group">
@@ -287,8 +287,8 @@
     }
 
     if (attendanceYes) {
-      const fridayYes = document.querySelector('input[name="Middag fredag"][value="Ja"]');
-      const fridayNo = document.querySelector('input[name="Middag fredag"][value="Nei"]');
+      const fridayYes = document.querySelector('input[name="Fredag"][value="Ja"]');
+      const fridayNo = document.querySelector('input[name="Fredag"][value="Nei"]');
       const toggleFriday = () => {
         fridayGroup.style.display = attendanceYes.checked ? 'flex' : 'none';
         if (!attendanceYes.checked && fridayNo) {
