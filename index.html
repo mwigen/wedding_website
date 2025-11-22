@@ -305,9 +305,60 @@
     const emailInput = document.getElementById('email');
     const ccInput = document.getElementById('cc');
     const fallbackMessage = document.getElementById('fallback-message');
+
+    const setSubmitState = (isSubmitting) => {
+      const submitButton = rsvpForm?.querySelector('button[type="submit"]');
+      if (!submitButton) return;
+      submitButton.disabled = isSubmitting;
+      submitButton.textContent = isSubmitting ? 'Sender...' : 'Send svar';
+    };
+
+    const hideFallback = () => {
+      if (fallbackMessage) {
+        fallbackMessage.style.display = 'none';
+      }
+    };
+
+    const showFallback = () => {
+      if (fallbackMessage) {
+        fallbackMessage.style.display = 'block';
+      }
+    };
+
+    const sendToGoogleSheet = (formData) => {
+      const url = 'https://script.google.com/macros/s/AKfycbx3DJgM3nWgRE_A9hcxIbMindeTt-apYFWBpP0dF9I2xk-Izu9Kx_0tEW5FlohMNnM/exec';
+      const sanitized = new URLSearchParams();
+
+      formData.forEach((value, key) => {
+        if (key.startsWith('_')) return;
+        sanitized.append(key, value);
+      });
+
+      if (emailInput) {
+        sanitized.set('E-post', emailInput.value.trim());
+      }
+
+      if (navigator.sendBeacon) {
+        const blob = new Blob([sanitized], { type: 'application/x-www-form-urlencoded' });
+        navigator.sendBeacon(url, blob);
+        return Promise.resolve();
+      }
+
+      return fetch(url, {
+        method: 'POST',
+        body: sanitized,
+        mode: 'no-cors'
+      });
+    };
+
     if (rsvpForm) {
       rsvpForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        if (!navigator.onLine) {
+          showFallback();
+          return;
+        }
 
         if (plusOneCheckbox) {
           plusOneValue.value = plusOneCheckbox.checked ? 'Ja' : 'Ingen';
@@ -318,15 +369,13 @@
             }
           }
         }
+
         if (ccInput && emailInput) {
-          ccInput.value = emailInput.value;
+          ccInput.value = emailInput.value.trim();
         }
 
-        const submitButton = rsvpForm.querySelector('button[type="submit"]');
-        if (submitButton) {
-          submitButton.disabled = true;
-          submitButton.textContent = 'Sender...';
-        }
+        hideFallback();
+        setSubmitState(true);
 
         const formData = new FormData(rsvpForm);
         const songInput = document.getElementById('song');
@@ -337,49 +386,33 @@
         const actionUrl = rsvpForm.getAttribute('action');
         const nextInput = rsvpForm.querySelector('input[name="_next"]');
 
-        const googleData = new FormData();
-        formData.forEach((value, key) => {
-          if (key.startsWith('_')) return;
-          googleData.append(key, value);
-        });
-
-        if (emailInput) {
-          googleData.set('E-post', emailInput.value.trim());
+        if (!actionUrl) {
+          showFallback();
+          setSubmitState(false);
+          return;
         }
 
-        fetch('https://script.google.com/macros/s/AKfycbx3DJgM3nWgRE_A9hcxIbMindeTt-apYFWBpP0dF9I2xk-Izu9Kx_0tEW5FlohMNnM/exec', {
-          method: 'POST',
-          body: googleData,
-          mode: 'no-cors',
-          keepalive: true
+        // Fire-and-forget logging of responses for the couple
+        sendToGoogleSheet(formData).catch(() => {
+          /* Ignore logging errors so the primary submission can continue */
         });
-
-        if (fallbackMessage) {
-          fallbackMessage.style.display = 'none';
-        }
-
-        if (!actionUrl) return;
 
         try {
           await fetch(actionUrl, {
             method: 'POST',
             body: formData,
-            mode: 'no-cors',
-            keepalive: true
+            mode: 'no-cors'
           });
 
           if (nextInput && nextInput.value) {
             window.location.href = nextInput.value;
+          } else {
+            rsvpForm.reset();
+            setSubmitState(false);
           }
         } catch (error) {
-          if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Send svar';
-          }
-
-          if (fallbackMessage) {
-            fallbackMessage.style.display = 'block';
-          }
+          setSubmitState(false);
+          showFallback();
         }
       });
     }
