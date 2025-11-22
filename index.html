@@ -338,7 +338,14 @@
         const nextInput = rsvpForm.querySelector('input[name="_next"]');
 
         const googleData = new FormData();
-        formData.forEach((value, key) => googleData.append(key, value));
+        formData.forEach((value, key) => {
+          if (key.startsWith('_')) return;
+          googleData.append(key, value);
+        });
+
+        if (emailInput) {
+          googleData.set('E-post', emailInput.value.trim());
+        }
 
         fetch('https://script.google.com/macros/s/AKfycbx3DJgM3nWgRE_A9hcxIbMindeTt-apYFWBpP0dF9I2xk-Izu9Kx_0tEW5FlohMNnM/exec', {
           method: 'POST',
