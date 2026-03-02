@@ -219,7 +219,7 @@
       <input type="hidden" name="_subject" value="Bryllupssvar til Anne & Morten">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="basic">
-      <input type="hidden" name="_next" value="https://mwigen.github.io/wedding_website/takk">
+      <input type="hidden" name="_next" value="https://mwigen.github.io/wedding_website/takk.html">
       <input type="hidden" name="_autoresponse" value="Takk for svaret! Vi har registrert dine opplysninger." />
 
       <button type="submit">Send svar</button>
@@ -346,13 +346,8 @@
     };
 
     if (rsvpForm) {
-      rsvpForm.addEventListener('submit', async (e) => {
+      rsvpForm.addEventListener('submit', (e) => {
         e.preventDefault();
-
-        if (!navigator.onLine) {
-          showFallback();
-          return;
-        }
 
         if (plusOneCheckbox) {
           plusOneValue.value = plusOneCheckbox.checked ? 'Ja' : 'Ingen';
@@ -378,36 +373,24 @@
         }
 
         const actionUrl = rsvpForm.getAttribute('action');
-        const nextInput = rsvpForm.querySelector('input[name="_next"]');
-
-        if (!actionUrl) {
-          showFallback();
-          setSubmitState(false);
-          return;
-        }
 
         // Fire-and-forget logging of responses for the couple
         sendToGoogleSheet(formData).catch(() => {
           /* Ignore logging errors so the primary submission can continue */
         });
 
-        try {
-          await fetch(actionUrl, {
+        if (actionUrl) {
+          fetch(actionUrl, {
             method: 'POST',
             body: formData,
-            mode: 'no-cors'
+            mode: 'no-cors',
+            keepalive: true
+          }).catch(() => {
+            /* Ignore submit errors and continue to thank-you page */
           });
-
-          if (nextInput && nextInput.value) {
-            window.location.href = nextInput.value;
-          } else {
-            rsvpForm.reset();
-            setSubmitState(false);
-          }
-        } catch (error) {
-          setSubmitState(false);
-          showFallback();
         }
+
+        window.location.href = 'takk.html';
       });
     }
 
