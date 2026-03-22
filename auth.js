@@ -1,5 +1,6 @@
 (function() {
   const passkey = 'Kilesand';
+
   if (sessionStorage.getItem('authenticated') === 'true') {
     return;
   }
@@ -8,7 +9,10 @@
 
   if (input === passkey) {
     sessionStorage.setItem('authenticated', 'true');
-  } else {
-    document.write('<h1>Feil passord</h1>');
+    return;
   }
+
+  sessionStorage.removeItem('authenticated');
+  alert('Tilgang nektet. Riktig passord kreves for å åpne siden.');
+  window.location.replace('about:blank');
 })();
