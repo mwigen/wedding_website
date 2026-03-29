@@ -177,6 +177,13 @@ h3 {
   margin-bottom: 2rem;
 }
 
+.embedded-map {
+  width: 100%;
+  max-width: 640px;
+  border: 0;
+  margin: 0 0 1rem;
+}
+
 .timeline {
   list-style: none;
   padding-left: 1.5rem;
