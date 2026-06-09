@@ -1,0 +1,8 @@
+{
+  "name": "wedding_website",
+  "version": "1.2.0",
+  "description": "Static site for Anne and Morten's wedding",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  }
+}
